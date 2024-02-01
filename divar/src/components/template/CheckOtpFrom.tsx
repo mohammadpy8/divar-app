@@ -1,12 +1,18 @@
 import { CheckOtpTypes } from '../../@types/checkOtp/checkOtpType'
+import { checkOtp } from '../../services/auth'
 
 const CheckOtpFrom = ({ code, setCode, mobile, setStep }: CheckOtpTypes) => {
   const changeHandle = (event: React.ChangeEvent<HTMLInputElement>) =>
     setCode(event.target.value)
 
-  const submitHandle = (event: React.FormEvent<HTMLFormElement>) => {
+  const submitHandle = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     console.log({ code, mobile })
+    if (code.length !== 5) return
+    const { response, error } = await checkOtp(mobile, code)
+    console.log({ response, error })
+    if (response) console.log({ response })
+    if (error) console.log({ error })
   }
   return (
     <form onSubmit={submitHandle}>
