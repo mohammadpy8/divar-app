@@ -1,10 +1,5 @@
 import { sendOtp } from '../../services/auth'
-
-interface SendOtpFromTypes {
-  mobile?: string
-  setMobile: (value: string) => void
-  setStep: (value: number) => void
-}
+import { SendOtpFromTypes } from '../../@types/sendOtp/sendOtpTypes'
 
 const SendOtpFrom = ({ mobile, setMobile, setStep }: SendOtpFromTypes) => {
   const changeHandle = (event: React.ChangeEvent<HTMLInputElement>) =>
