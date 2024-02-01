@@ -9,4 +9,10 @@ const setCookie = (tokens: tokensType) => {
   }`;
 };
 
-export { setCookie };
+const getCookie = (cookieName: string) => {
+  return document.cookie
+    .split(";")
+    .find((token) => token.trim().split("=")[0] === cookieName)?.split("=")[1];
+};
+
+export { setCookie, getCookie };
