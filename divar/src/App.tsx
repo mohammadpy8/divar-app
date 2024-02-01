@@ -1,10 +1,10 @@
-import AuthPage from './pages/AuthPage'
+import Router from './routers/router'
 
 const App = () => {
   return (
-    <div>
-      <AuthPage />
-    </div>
+    <>
+      <Router />
+    </>
   )
 }
 
