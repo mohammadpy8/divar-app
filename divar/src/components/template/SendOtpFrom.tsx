@@ -1,3 +1,5 @@
+import { sendOtp } from '../../services/auth'
+
 interface SendOtpFromTypes {
   mobile?: string
   setMobile: (value: string) => void
@@ -7,9 +9,13 @@ interface SendOtpFromTypes {
 const SendOtpFrom = ({ mobile, setMobile, setStep }: SendOtpFromTypes) => {
   const changeHandle = (event: React.ChangeEvent<HTMLInputElement>) =>
     setMobile(event.target.value)
-
-    const submitHandle = (event: React.FormEvent<HTMLFormElement>) => {
-      event.preventDefault();
+  const submitHandle = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    if (mobile?.length !== 11) return
+    const { response, error } = await sendOtp(mobile)
+    console.log(response, error)
+    if (response) setStep(2)
+    if (error) console.log(error)
   }
 
   return (
