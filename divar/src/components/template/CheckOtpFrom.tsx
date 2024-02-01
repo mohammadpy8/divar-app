@@ -1,5 +1,6 @@
 import { CheckOtpTypes } from '../../@types/checkOtp/checkOtpType'
 import { checkOtp } from '../../services/auth'
+import {setCookie} from '../../utils/cookie'
 
 const CheckOtpFrom = ({ code, setCode, mobile, setStep }: CheckOtpTypes) => {
   const changeHandle = (event: React.ChangeEvent<HTMLInputElement>) =>
@@ -11,7 +12,9 @@ const CheckOtpFrom = ({ code, setCode, mobile, setStep }: CheckOtpTypes) => {
     if (code.length !== 5) return
     const { response, error } = await checkOtp(mobile, code)
     console.log({ response, error })
-    if (response) console.log({ response })
+    if (response) {
+      setCookie(response.data)
+    }
     if (error) console.log({ error })
   }
   return (
