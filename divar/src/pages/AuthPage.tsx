@@ -8,7 +8,9 @@ const AuthPage: FC = () => {
   const [code, setCode] = useState<string>('')
   return (
     <div>
-      {step === 1 && <SendOtpFrom />}
+      {step === 1 && (
+        <SendOtpFrom setStep={setStep} mobile={mobile} setMobile={setMobile} />
+      )}
       {step === 2 && <CheckOtpFrom />}
     </div>
   )
