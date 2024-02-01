@@ -1,5 +1,11 @@
+import AuthPage from './pages/AuthPage'
+
 const App = () => {
-  return <div></div>
+  return (
+    <div>
+      <AuthPage />
+    </div>
+  )
 }
 
 export default App
