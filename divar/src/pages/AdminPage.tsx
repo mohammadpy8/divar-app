@@ -1,11 +1,12 @@
+import { FC } from 'react'
+import CategoryForm from '../components/template/CategoryForm'
 
+const AdminPage: FC = () => {
+  return (
+    <div>
+      <CategoryForm />
+    </div>
+  )
+}
 
-const AdminPage = () => {
-    return (
-        <div>
-            
-        </div>
-    );
-};
-
-export default AdminPage;
+export default AdminPage
