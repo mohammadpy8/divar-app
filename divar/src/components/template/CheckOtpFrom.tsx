@@ -1,8 +1,13 @@
+import { useNavigate } from 'react-router-dom'
 import { CheckOtpTypes } from '../../@types/checkOtp/checkOtpType'
 import { checkOtp } from '../../services/auth'
-import {setCookie} from '../../utils/cookie'
+import { setCookie } from '../../utils/cookie'
+import { useQuery } from '@tanstack/react-query'
+import { getProfile } from '../../services/user'
 
 const CheckOtpFrom = ({ code, setCode, mobile, setStep }: CheckOtpTypes) => {
+  const navigate = useNavigate()
+  const { refetch } = useQuery(['profile'], getProfile)
   const changeHandle = (event: React.ChangeEvent<HTMLInputElement>) =>
     setCode(event.target.value)
 
@@ -14,6 +19,8 @@ const CheckOtpFrom = ({ code, setCode, mobile, setStep }: CheckOtpTypes) => {
     console.log({ response, error })
     if (response) {
       setCookie(response.data)
+      navigate('/');
+      refetch()
     }
     if (error) console.log({ error })
   }
