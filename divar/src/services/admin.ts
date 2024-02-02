@@ -3,4 +3,6 @@ import api from "../configs/api";
 
 const addCategory = (data: CategotyFormTypes) => api.post("category", data);
 
-export { addCategory };
+const getCategory = () => api.get("category");
+
+export { addCategory, getCategory };
