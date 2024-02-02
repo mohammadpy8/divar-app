@@ -10,6 +10,7 @@ import { getProfile } from '../services/user'
 const Router = () => {
   const { data, isLoading, error } = useQuery(['profile'], getProfile)
   console.log({ data, isLoading, error })
+  if (isLoading) return <h1>loading....</h1>
   return (
     <Routes>
       <Route index element={<HomePage />} />
