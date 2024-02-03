@@ -1,9 +1,18 @@
 import { useQuery } from '@tanstack/react-query'
 import { getCategory } from '../../services/admin'
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { CategoryListTypes } from '../../@types/categoryList/categoryListTypes'
+import { AddPostTypes } from '../../@types/addPost/addPostTypes'
 
 const AddPost: FC = () => {
+  const [form, setForm] = useState<AddPostTypes>({
+    title: '',
+    content: '',
+    category: '',
+    city: '',
+    amount: null,
+    image: null,
+  })
   const { data, isLoading } = useQuery(['getCategory'], getCategory)
   console.log({ data, isLoading })
   const addHandler = (
@@ -12,8 +21,20 @@ const AddPost: FC = () => {
     event.preventDefault()
     console.log('send')
   }
+  const changeHandle = (event: React.FormEvent<HTMLFormElement>) => {
+    const name = (event.target as HTMLInputElement).name
+      const value = (event.target as HTMLInputElement).value
+    //   const target = event?.target as HTMLInputElement;
+      if (!event.target.files) return;
+      const files = target?.files[0]
+    if (name !== 'image') {
+      setForm({ ...form, [name]: value })
+    } else {
+        setForm({ ...form, [name]: files})
+    }
+  }
   return (
-    <form>
+    <form onChange={changeHandle}>
       <h3>add post </h3>
       <label htmlFor="title">title</label>
       <input type="text" name="title" id="title" />
