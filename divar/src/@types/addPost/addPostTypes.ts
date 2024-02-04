@@ -1,8 +1,8 @@
-export interface AddPostTypes<T> {
+export interface AddPostTypes {
   title: string;
   content: string;
   category: string;
   city: string;
   amount: string | null;
-  image?:string | null | T,
+  image?:string | null | File,
 }
