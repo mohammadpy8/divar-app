@@ -4,7 +4,7 @@ import { FC, useState } from "react";
 import { CategoryListTypes } from "../../@types/categoryList/categoryListTypes";
 import { AddPostTypes } from "../../@types/addPost/addPostTypes";
 
-const AddPost: FC = () => {
+const AddPost: FC = () : React.JSX.Element => {
   const [form, setForm] = useState<AddPostTypes>({
     title: "",
     content: "",
